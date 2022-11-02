@@ -51,5 +51,9 @@ while True:
 
     elif(choice==5):
          print("delete the book") 
+         title = input("enter the title")
+         sql = 'DELETE FROM `book` WHERE `title`='+title
+         mycursor.execute(sql)
+         mydb.commit()
     elif(choice==6):
         break               
