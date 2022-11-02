@@ -15,6 +15,15 @@ while True:
     choice =int(input('enter an option: '))
     if(choice==1):
         print('book enter selected')
+        author = input("enter the book author:")
+        title = input("enter the title of the book")
+        category = input("enter the category of the book")
+        charge = input("enter the charge of the book")
+        sql = 'INSERT INTO `book`(`author`, `title`, `category`, `charge/day`) VALUES(%s,%s,%s,%s)'
+        data =(author,title,category,charge)
+        mycursor.executed(sql,data)
+        mydb.commit()
+
     elif(choice==2):
         print('view all book selected')   
     elif(choice==3):
