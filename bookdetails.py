@@ -56,4 +56,36 @@ while True:
          mycursor.execute(sql)
          mydb.commit()
     elif(choice==6):
-        break               
+        break   
+    elif(choice == 7 ):
+
+        sql = 'SELECT i.`User_Id`, i.`book_id`, i.`issue_date`, i.`return_date`,DATEDIFF(i.`return_date`,i.issue_date) AS datediff,DATEDIFF(i.`return_date`,i.issue_date)*b.charge_p_day AS Total_Amount FROM `issuing_book` i JOIN books_detail b ON i.book_id=b.id'
+
+        mycursor.execute(sql)
+
+        result = mycursor.fetchall()
+
+        for i in result:
+
+            print(i)  
+    elif(choice == 7):
+
+        print('displays Total number of books for each category')
+
+        sql = 'SELECT COUNT(*) AS total_book_per_category,`book_categ` FROM `books_detail` GROUP BY `book_categ`'
+
+        mycursor.execute(sql)
+
+        result = mycursor.fetchall()
+
+        for i in result:
+
+            print(i)          
+    elif(choice==8):
+        print("display the book details where author starting character contail") 
+        letter = input("enter the letter to search:") 
+        sql = "select `name`,`category`,`author`,`charge From `books` WHERE `name` like '"+letter+"%'" 
+        mycursor.execute(sql)    
+        result = mycursor.fetchall() 
+        for i in result:
+            print(i)
